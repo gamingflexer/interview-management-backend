@@ -1,15 +1,15 @@
 # interview-management
 
-Flask Backend
+### Flask Backend
 ==================================
 
-# SetUp and Run
+### SetUp and Run
 
-## Fork, Clone and Remote
+### Fork, Clone and Remote
 
 To run the project successfully, you need to create .**env** file using .envsample file
 
-## Installation
+### Installation
 
 After cloning, create a virtual environment and install the requirements. For Linux and Mac users:
 
