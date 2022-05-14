@@ -3,6 +3,7 @@
 <head>
 	<title>Flask Login</title>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
@@ -15,10 +16,11 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+	<script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 {% block content %}{% endblock %}
-	<footer><p style="text-align:center;">Template courtesy: colorlib</p></footer>
+	<footer><p style="text-align:center;">Om Surve</p></footer>
     <script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js')}}"></script>
     <script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js')}}"></script>
     <script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script>

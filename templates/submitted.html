@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<aside class="p-5 pt-38 sm:p-12 sm:pt-44 bg-gradient-to-r from-purple-600 to-blue-500 my-8">
+    <div class="sm:items-end sm:justify-between sm:flex">
+        <div class="max-w-xl">
+            <p class="text-5xl font-bold text-white mb-3">
+                Form Submitted.
+            </p>
+            <p class="text-xl font-bold text-white">
+                Thank you, you will mailed for further procedure.
+            </p>
+        </div>
+
+        <p class="inline px-8 py-4 mt-4 text-blue-500 bg-white rounded-lg shadow-lg sm:mt-0 sm:ml-8">
+            <img src="{{url_for('static', filename='exam.png')}}" alt="tick" class="object-cover" />
+        </p>
+    </div>
+</aside>
+
+{% endblock %}

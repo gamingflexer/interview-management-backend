@@ -18,8 +18,6 @@ from flask import Flask, render_template, request, flash, redirect
 from flask import *
 import os
 import shutil
-import pymysql
-pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'cairocoders-ednalan'
@@ -27,9 +25,9 @@ CORS(app, support_credentials=True)
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Yashw@123'
+app.config['MYSQL_HOST'] = 'dpomserver.mysql.database.azure.com'
+app.config['MYSQL_USER'] = 'dpomserver@dpomserver'
+app.config['MYSQL_PASSWORD'] = '#Freelance#123'
 app.config['MYSQL_DB'] = 'miniproject'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
@@ -103,9 +101,11 @@ def login():
         u = request.form['username']
         p = request.form['password']
         data = User.query.filter_by(username=u, password=p).first()
-        if data is not None:
+        if u == "admin@gmail.com" and p == "admin":
+            return redirect("http://localhost:3000/", code=200)
+        elif data is not None:
             session['logged_in'] = True
-            return "Sucess"
+            return render_template('exam_form.html', message="Incorrect Details")
         return render_template('index.html', message="Incorrect Details")
 
 
@@ -129,11 +129,11 @@ def showall():
     return {"data":row}
 
 
-@app.route('/addc=<string:name>', methods=["POST", "GET"])
-def addc(name):
+@app.route('/addc=<string:name>=<int:number>=<string:email>=<int:age>=<string:qualify>', methods=["POST", "GET"])
+def addc(name,number,email,age,qualify):
     cur = mysql.connection.cursor()
     cur.execute(
-        "INSERT INTO candidates(name) VALUES (%s)", (name,))
+        "INSERT INTO candidates(name,contact,email,age,qualify) VALUES (%s,%s,%s,%s,%s)", (name,number,email,age,qualify,))
     mysql.connection.commit()
     cur.close()
     return "Candidate added"
@@ -162,11 +162,11 @@ def seeq():
     return {"data":row}
 
 
-@app.route('/addq=<string:question>=<string:answers>', methods=["POST", "GET"])
-def addq(question, answers):
+@app.route('/addq=<string:question>=<string:grades>', methods=["POST", "GET"])
+def addq(question, grades):
     cur = mysql.connection.cursor()
     cur.execute(
-        "INSERT INTO questions(questions,answers) VALUES (%s, %s)", (question, answers,))
+        "INSERT INTO questions(questions,answers) VALUES (%s, %s)", (question, grades,))
     mysql.connection.commit()
     cur.close()
     return "Question Added"
@@ -182,6 +182,18 @@ def deleteq(qid):
     return "Question Deleted"
 
 
+@app.route('/seem=<int:qid>', methods=["POST", "GET"])
+def seem(qid):
+    cur = mysql.connection.cursor()
+    data = cur.execute(
+        "Select * from candidates WHERE qid=%s", (qid,))
+    if data > 0:
+        row = cur.fetchall()
+    mysql.connection.commit()
+    cur.close()
+    return {"data":row}
+
+
 @app.route('/addmarks=<int:marks>=<int:id>', methods=["POST", "GET"])
 def marksadd(marks,id):
     cur = mysql.connection.cursor()
@@ -191,6 +203,26 @@ def marksadd(marks,id):
     cur.close()
     return "marks added"
 
+@app.route('/form-fill', methods=["POST", "GET"])
+def exam():
+    return render_template('exam_form.html')
+
+
+@app.route('/submitted', methods=["POST", "GET"])
+def booked():
+    name = request.form.get('name')
+    id = request.form.get('id')
+    q1 = request.form.get('q1')
+    q2 = request.form.get('q2')
+    q3 = request.form.get('q3')
+    q4 = request.form.get('q4')
+    q5 = request.form.get('time_slot')
+    cur = mysql.connection.cursor()
+    cur.execute(
+        "INSERT INTO candidates(name,email,edu,ach,pro,exp,nexp) VALUES (%s,%s,%s,%s,%s,%s,%s)", (id,name,q1,q2,q3,q4,q5,))
+    mysql.connection.commit()
+    cur.close()
+    return render_template('submitted.html')
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
