@@ -1,7 +1,10 @@
-
+flask
 flask_mysqldb
 psycopg2
-flask_mysqldb
+pymysql
+flask_sqlalchemy
 mysql.connector
 flask_sqlalchemy
-flask
+werkzeug
+mysql
+shutil
