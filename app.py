@@ -17,7 +17,6 @@ from sre_constants import SUCCESS
 from flask import Flask, render_template, request, flash, redirect
 from flask import *
 import os
-import shutil
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'cairocoders-ednalan'

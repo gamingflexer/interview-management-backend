@@ -6,4 +6,3 @@ mysql.connector
 flask_sqlalchemy
 werkzeug
 mysql
-shutil
