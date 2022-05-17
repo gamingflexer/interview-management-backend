@@ -1,3 +1,4 @@
+from app import app
 import time
 from werkzeug.utils import secure_filename
 import pymysql
@@ -232,4 +233,4 @@ def page_not_found(error):
 
 port = int(os.environ.get('PORT', 8080))
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False,host='0.0.0.0')
