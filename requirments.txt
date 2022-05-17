@@ -1,8 +1,0 @@
-flask
-flask_mysqldb
-pymysql
-flask_sqlalchemy
-mysql.connector
-flask_sqlalchemy
-werkzeug
-mysql
