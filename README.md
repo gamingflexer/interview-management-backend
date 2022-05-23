@@ -30,26 +30,12 @@ Step 1: Change the current directory to Flask-backend
 (venv) $ cd interview-management-backend
 ```
 
-Step 2: Set up FLASK_APP
-(For Linux or Mac)
-```sh
-(venv) $ `export FLASK_APP=api`
-```
 
-(For Windows)
-```sh
-(venv) $ `set FLASK_APP=api`
-```
-
-Step 3: Now, Upgrade the Migrated Database, using the following command
-```sh
-(venv) $ flask db upgrade
-```
 
 Step 4:Start the backend server
 To run the server use the following command:
 ```sh
-(venv) $ flask run
+(venv) $ python app.py
 ```
 
 
@@ -61,7 +47,4 @@ Endpoint                   Methods       Rule
 
 ```
 
-**Note** : You can find the updated list of API endpoints using the following command
-```sh
-(venv) $ flask routes
-```
+
